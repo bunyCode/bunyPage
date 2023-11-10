@@ -1,0 +1,43 @@
+---
+import Header from "../components/Header.astro";
+interface Props {
+    title: string;
+}
+
+import niño2 from "../assets/niño2.png";
+import Footer from "../components/Footer.astro";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="shortcut icon" href={niño2.src} type="image/x-icon" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body class="min-h-screen">
+        <Header />
+        <slot />
+        <Footer />
+    </body>
+</html>
+<style>
+    *::-webkit-scrollbar {
+        width: 10px;
+        background-color: #eadede;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: rgb(167, 139, 250);
+        border-radius: 10px;
+    }
+    ::selection {
+        background-color: rgb(167, 139, 250);
+        color: rgb(167, 139, 250);
+    }
+</style>

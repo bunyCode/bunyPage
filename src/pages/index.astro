@@ -1,0 +1,83 @@
+---
+import Layout from "../layout/Layout.astro";
+import Project from "../components/Project.astro";
+import About from "../components/About.astro";
+import { proyects } from "../components/projects.js";
+import niño from "../assets/niño.webp";
+import tecnologies from "../components/tecnologies";
+---
+
+<Layout title="BunyCode">
+    <>
+        <section
+            class="bg-white flex flex-col h-screen items-center px-10 justify-center md:flex-row py-5">
+            <h1
+                class="text-gray-800 text-3xl flex font-bold gap-4 sm:text-5xl md:text-4xl flex-col">
+                Daniel Reyes
+                <a
+                    href=" https://github.com/bunyCode/"
+                    class="text-purple-700"
+                    target="_blank">
+                    @bunycode
+                </a>
+            </h1>
+            <figure>
+                <img class="max-w-lg" src={niño.src} alt="" />
+            </figure>
+        </section>
+        <About />
+        <section
+            class="flex items-center flex-col p-5 w-full gap-5 mt-10"
+            id="proyectos">
+            <h2 class="text-purple-600 font-bold text-2xl">Proyectos</h2>
+            <div class="grid grid-cols-1 gap-3 lg:grid-cols-3 md:grid-cols-2">
+                {
+                    proyects.map(
+                        ({
+                            img,
+                            title,
+                            repositoriUrl,
+                            tecnologies,
+                            viewUrl,
+                            isVscodeIcon,
+                        }) => {
+                            return (
+                                <Project
+                                    img={img}
+                                    repositoriUrl={repositoriUrl}
+                                    viewUrl={viewUrl}
+                                    isVscodeIcon={isVscodeIcon}
+                                    tecnologies={tecnologies}>
+                                    {title}
+                                </Project>
+                            );
+                        },
+                    )
+                }
+            </div>
+        </section>
+        <section
+            class="flex items-center flex-col p-5 w-full gap-5 mt-10 mb-20"
+            id="tecnologias">
+            <h2 class="text-purple-600 font-bold text-2xl">Tecnologias</h2>
+            <div
+                class="grid grid-cols-2 gap-5 text-purple-100 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+                {
+                    tecnologies.map(
+                        ({
+                            tecnologieName,
+                            tecnologieIcon: TecnologieIcon,
+                        }) => (
+                            <article class="flex items-center flex-col bg-purple-600 p-2 rounded w-40">
+                                <p class="font-bold text-sxl">
+                                    {tecnologieName}
+                                </p>
+                                <TecnologieIcon className="h-10 w-10" />
+                            </article>
+                        ),
+                    )
+                }
+            </div>
+        </section>
+    </>
+</Layout>

@@ -1,0 +1,42 @@
+---
+const { img, repositoriUrl, tecnologies, viewUrl, isVscodeIcon } = Astro.props;
+import { IconExternalLink } from "@tabler/icons-react";
+import { IconBrandVscode } from "@tabler/icons-react";
+import { IconBrandGithub } from "@tabler/icons-react";
+---
+
+<div
+    class="flex flex-col items-center justify-between gap-4 border-purple-200 border-2 rounded-lg pb-8">
+    <img class="w-full rounded-t-lg aspect-[4:3]" src={img.src} alt="" />
+    <h2 class="text-3xl font-medium text-purple-600 text-center">
+        <slot>title</slot>
+    </h2>
+    <div class="flex gap-4 text-gray-900">
+        <a
+            class="flex gap-1 text-xl hover:text-purple-500 duration-300 items-center"
+            href={repositoriUrl}
+            target="_blank">
+            <IconBrandGithub />
+             Respositorio
+        </a>
+        <a
+            class="flex gap-1 text-xl hover:text-purple-500 duration-300 items-center"
+            href={viewUrl}
+            target="_blank">
+            {isVscodeIcon ? <IconBrandVscode /> : <IconExternalLink />}
+             Link
+        </a>
+    </div>
+    <div class="flex gap-4 text-violet-700">
+        {
+            tecnologies.map(
+                ({ tecnologieIcon: TecnologieIcon, tecnologieText }) => (
+                    <>
+                        <TecnologieIcon />
+                        <p>{tecnologieText}</p>
+                    </>
+                ),
+            )
+        }
+    </div>
+</div>
